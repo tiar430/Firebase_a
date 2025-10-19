@@ -4,28 +4,19 @@ import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Logo } from "@/components/logo";
 import {
-  CircleUser,
   FileDown,
   FileUp,
   PlusCircle,
   Search,
 } from "lucide-react";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import type { Brand } from "@/lib/types";
 
 interface HeaderProps {
@@ -64,13 +55,8 @@ export function Header({
 
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm md:px-6">
-      <div className="flex items-center gap-2">
-        <Logo className="h-6 w-6 text-primary" />
-        <h1 className="font-headline text-lg font-semibold text-foreground">
-          BrandPilot
-        </h1>
-      </div>
-
+       <SidebarTrigger className="md:hidden" />
+      
       <div className="relative ml-auto flex-1 md:grow-0">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
@@ -96,7 +82,7 @@ export function Header({
         </SelectContent>
       </Select>
 
-      <div className="hidden md:flex items-center gap-2 ml-4">
+      <div className="hidden md:flex items-center gap-2">
         <Button variant="outline" size="sm" onClick={onExport}>
           <FileDown className="mr-2 h-4 w-4" />
           Export
@@ -113,22 +99,6 @@ export function Header({
         <span className="hidden sm:inline">Add Program</span>
       </Button>
       
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="secondary" size="icon" className="rounded-full">
-            <CircleUser className="h-5 w-5" />
-            <span className="sr-only">Toggle user menu</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
     </header>
   );
 }
